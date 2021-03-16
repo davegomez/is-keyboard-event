@@ -1,1 +1,1 @@
-export { default as isEnter } from "./src/is-enter";
+export { default as isEnter } from "./src/is-enter.ts";
