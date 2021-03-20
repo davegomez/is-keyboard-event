@@ -35,3 +35,35 @@ Deno.test("isSpace keydown with key", () => {
   const event = mockKeyboardEvent("keydown", { key: VALUE_SPACE });
   assertEquals(isSpace(event), true);
 });
+
+Deno.test("!isSpace when Alt key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_SPACE,
+    altKey: true,
+  });
+  assertEquals(isSpace(event), false);
+});
+
+Deno.test("!isSpace when Ctrl key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_SPACE,
+    ctrlKey: true,
+  });
+  assertEquals(isSpace(event), false);
+});
+
+Deno.test("!isSpace when Shift key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_SPACE,
+    shiftKey: true,
+  });
+  assertEquals(isSpace(event), false);
+});
+
+Deno.test("!isSpace when Meta key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_SPACE,
+    metaKey: true,
+  });
+  assertEquals(isSpace(event), false);
+});

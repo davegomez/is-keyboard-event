@@ -35,3 +35,35 @@ Deno.test("isBackspace keydown with key", () => {
   const event = mockKeyboardEvent("keydown", { key: VALUE_BACK_SPACE });
   assertEquals(isBackspace(event), true);
 });
+
+Deno.test("!isBackspace when Alt key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_BACK_SPACE,
+    altKey: true,
+  });
+  assertEquals(isBackspace(event), false);
+});
+
+Deno.test("!isBackspace when Ctrl key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_BACK_SPACE,
+    ctrlKey: true,
+  });
+  assertEquals(isBackspace(event), false);
+});
+
+Deno.test("!isBackspace when Shift key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_BACK_SPACE,
+    shiftKey: true,
+  });
+  assertEquals(isBackspace(event), false);
+});
+
+Deno.test("!isBackspace when Meta key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_BACK_SPACE,
+    metaKey: true,
+  });
+  assertEquals(isBackspace(event), false);
+});

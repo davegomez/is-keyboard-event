@@ -35,3 +35,35 @@ Deno.test("isDash keydown with key", () => {
   const event = mockKeyboardEvent("keydown", { key: VALUE_DASH });
   assertEquals(isDash(event), true);
 });
+
+Deno.test("!isDash when Alt key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_DASH,
+    altKey: true,
+  });
+  assertEquals(isDash(event), false);
+});
+
+Deno.test("!isDash when Ctrl key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_DASH,
+    ctrlKey: true,
+  });
+  assertEquals(isDash(event), false);
+});
+
+Deno.test("!isDash when Shift key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_DASH,
+    shiftKey: true,
+  });
+  assertEquals(isDash(event), false);
+});
+
+Deno.test("!isDash when Meta key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_DASH,
+    metaKey: true,
+  });
+  assertEquals(isDash(event), false);
+});

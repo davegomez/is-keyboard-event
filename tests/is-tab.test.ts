@@ -32,3 +32,35 @@ Deno.test("isTab keydown with key", () => {
   const event = mockKeyboardEvent("keydown", { key: VALUE_TAB });
   assertEquals(isTab(event), true);
 });
+
+Deno.test("!isTab when Alt key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_TAB,
+    altKey: true,
+  });
+  assertEquals(isTab(event), false);
+});
+
+Deno.test("!isTab when Ctrl key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_TAB,
+    ctrlKey: true,
+  });
+  assertEquals(isTab(event), false);
+});
+
+Deno.test("!isTab when Shift key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_TAB,
+    shiftKey: true,
+  });
+  assertEquals(isTab(event), false);
+});
+
+Deno.test("!isTab when Meta key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_TAB,
+    metaKey: true,
+  });
+  assertEquals(isTab(event), false);
+});

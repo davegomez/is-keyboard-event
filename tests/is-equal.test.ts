@@ -35,3 +35,35 @@ Deno.test("isEqual keydown with key", () => {
   const event = mockKeyboardEvent("keydown", { key: VALUE_EQUALS });
   assertEquals(isEqual(event), true);
 });
+
+Deno.test("!isEqual when Alt key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_EQUALS,
+    altKey: true,
+  });
+  assertEquals(isEqual(event), false);
+});
+
+Deno.test("!isEqual when Ctrl key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_EQUALS,
+    ctrlKey: true,
+  });
+  assertEquals(isEqual(event), false);
+});
+
+Deno.test("!isEqual when Shift key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_EQUALS,
+    shiftKey: true,
+  });
+  assertEquals(isEqual(event), false);
+});
+
+Deno.test("!isEqual when Meta key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_EQUALS,
+    metaKey: true,
+  });
+  assertEquals(isEqual(event), false);
+});

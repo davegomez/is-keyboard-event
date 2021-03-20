@@ -32,3 +32,35 @@ Deno.test("isUp keydown with key", () => {
   const event = mockKeyboardEvent("keydown", { key: VALUE_UP });
   assertEquals(isUp(event), true);
 });
+
+Deno.test("!isUp when Alt key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_UP,
+    altKey: true,
+  });
+  assertEquals(isUp(event), false);
+});
+
+Deno.test("!isUp when Ctrl key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_UP,
+    ctrlKey: true,
+  });
+  assertEquals(isUp(event), false);
+});
+
+Deno.test("!isUp when Shift key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_UP,
+    shiftKey: true,
+  });
+  assertEquals(isUp(event), false);
+});
+
+Deno.test("!isUp when Meta key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_UP,
+    metaKey: true,
+  });
+  assertEquals(isUp(event), false);
+});

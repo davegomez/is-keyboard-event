@@ -35,3 +35,35 @@ Deno.test("isEscape keydown with key", () => {
   const event = mockKeyboardEvent("keydown", { key: VALUE_ESCAPE });
   assertEquals(isEscape(event), true);
 });
+
+Deno.test("!isEscape when Alt key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_ESCAPE,
+    altKey: true,
+  });
+  assertEquals(isEscape(event), false);
+});
+
+Deno.test("!isEscape when Ctrl key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_ESCAPE,
+    ctrlKey: true,
+  });
+  assertEquals(isEscape(event), false);
+});
+
+Deno.test("!isEscape when Shift key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_ESCAPE,
+    shiftKey: true,
+  });
+  assertEquals(isEscape(event), false);
+});
+
+Deno.test("!isEscape when Meta key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_ESCAPE,
+    metaKey: true,
+  });
+  assertEquals(isEscape(event), false);
+});
