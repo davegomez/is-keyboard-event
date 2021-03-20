@@ -35,3 +35,35 @@ Deno.test("isEnter keydown with key", () => {
   const event = mockKeyboardEvent("keydown", { key: VALUE_ENTER });
   assertEquals(isEnter(event), true);
 });
+
+Deno.test("!isEnter when Alt key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_ENTER,
+    altKey: true,
+  });
+  assertEquals(isEnter(event), false);
+});
+
+Deno.test("!isEnter when Ctrl key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_ENTER,
+    ctrlKey: true,
+  });
+  assertEquals(isEnter(event), false);
+});
+
+Deno.test("!isEnter when Shift key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_ENTER,
+    shiftKey: true,
+  });
+  assertEquals(isEnter(event), false);
+});
+
+Deno.test("!isEnter when Meta key is pressed", () => {
+  const event = mockKeyboardEvent("keypress", {
+    code: CODE_ENTER,
+    metaKey: true,
+  });
+  assertEquals(isEnter(event), false);
+});
